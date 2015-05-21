@@ -13,7 +13,7 @@
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
+#    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
@@ -28,6 +28,7 @@
     'author': 'Davide Corio, Odoo Community Association (OCA), '
               'Agile Business Group',
     'website': 'http://www.odoo-italia.org/',
+    'license': 'AGPL-3',
     'depends': ['sale_stock', 'stock_account'],
     'data': [
         'security/ir.model.access.csv',
@@ -44,5 +45,4 @@
     ],
     'test': ['tests/new_ddt.yml'],
     'installable': True,
-    'active': False,
 }
