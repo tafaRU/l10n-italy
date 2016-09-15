@@ -18,6 +18,7 @@ class TestDdt(TransactionCase):
         return self.env['stock.picking'].create({
             'partner_id': self.partner.id,
             'picking_type_id': self.env.ref('stock.picking_type_out').id,
+            'carrier_id': self.env.ref('delivery.normal_delivery_carrier').id,
             })
 
     def _create_move(self, picking, product, quantity=1.0):
@@ -146,6 +147,8 @@ class TestDdt(TransactionCase):
 
         self.assertEqual(len(ddt.picking_ids), 3)
         self.assertEqual(len(ddt.line_ids), 4)
+        carrier = ddt.mapped('picking_ids.carrier_id')
+        self.assertEqual(carrier.partner_id, ddt.carrier_id)
         self.assertTrue(
             self.picking1 | self.picking2 | self.picking3 == ddt.picking_ids)
         for line in ddt.line_ids:
