@@ -24,6 +24,7 @@
         'sale_stock',
         'stock_account',
         'stock_picking_package_preparation_line',
+        'delivery',
         ],
     'data': [
         'security/ir.model.access.csv',

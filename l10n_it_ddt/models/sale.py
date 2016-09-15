@@ -87,6 +87,7 @@ class SaleOrder(models.Model):
             'transportation_method_id':
             order.transportation_method_id.id,
             'picking_ids': [(6, 0, picking_ids)],
+            'carrier_id': order.carrier_id.partner_id.id,
             }
 
     def action_ship_create(self, cr, uid, ids, context=None):

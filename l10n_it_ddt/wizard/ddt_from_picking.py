@@ -31,7 +31,8 @@ class DdTFromPickings(models.TransientModel):
             'carriage_condition_id': False,
             'goods_description_id': False,
             'transportation_reason_id': False,
-            'transportation_method_id': False
+            'transportation_method_id': False,
+            'carrier_id': False,
             }
         partner = False
         for picking in self.picking_ids:
@@ -44,6 +45,8 @@ class DdTFromPickings(models.TransientModel):
                 {'inv_type': 'out_invoice'}
                 )._get_partner_to_invoice(picking)
             values['partner_shipping_id'] = partner.id
+            # get carrier from the picking's delivery carrier
+            values['carrier_id'] = picking.carrier_id.partner_id.id
             # ----- Get partners from order if it exists
             sale = picking.sale_id or False
             if sale:
