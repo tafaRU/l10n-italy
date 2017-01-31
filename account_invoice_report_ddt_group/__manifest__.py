@@ -6,12 +6,15 @@
 
 {
     'name': "Account invoice report grouped by DDT",
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'author': 'Agile Business Group, Apulia Software',
     'website': 'http://www.agilebg.com',
     'license': 'GPL-3',
     'depends': [
-        'account', 'sale_layout', 'stock_picking_invoice_link', 'l10n_it_ddt',
+        'account',
+        'sale_layout',
+        'stock_picking_invoice_link',
+        'l10n_it_ddt',
     ],
     "data": [
         'views/invoice_ddt.xml',
