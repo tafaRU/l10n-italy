@@ -12,7 +12,6 @@
     'license': 'GPL-3',
     'depends': [
         'account',
-        'sale_layout',
         'stock_picking_invoice_link',
         'l10n_it_ddt',
     ],
