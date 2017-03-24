@@ -60,4 +60,4 @@ class StockPicking(models.Model):
             else:
                 return self.partner_id
         else:
-            return self.company_id.partner_id
+            return self.location_dest_id.partner_id
