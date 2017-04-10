@@ -24,7 +24,7 @@
         'sale_stock',
         'stock_account',
         'stock_picking_package_preparation_line',
-        ],
+    ],
     'data': [
         'security/ir.model.access.csv',
         'data/ddt_data.xml',
@@ -35,7 +35,8 @@
         'views/sale.xml',
         'wizard/add_picking_to_ddt.xml',
         'wizard/ddt_from_picking.xml',
+        'wizard/ddt_create_invoice.xml',
         'views/report_ddt.xml',
-        ],
+    ],
     'installable': True,
 }

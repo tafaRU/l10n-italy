@@ -43,3 +43,14 @@ class AccountInvoice(models.Model):
             self.transportation_method_id = (
                 self.partner_id.transportation_method_id.id)
         return res
+
+
+class AccountInvoiceLine(models.Model):
+
+    _inherit = 'account.invoice.line'
+
+    ddt_id = fields.Many2one('stock.picking.package.preparation', string='Ddt')
+    ddt_line_id = fields.Many2one(
+        'stock.picking.package.preparation.line', string='Ddt line')
+    ddt_sequence = fields.Integer(
+        string='Ddt sequence', related='ddt_line_id.sequence', store=True)
