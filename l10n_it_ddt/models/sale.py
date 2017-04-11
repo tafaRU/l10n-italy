@@ -60,17 +60,6 @@ class SaleOrder(models.Model):
                 self.partner_id.transportation_method_id.id)
         return result
 
-    @api.multi
-    def _prepare_invoice(self):
-        vals = super(SaleOrder, self)._prepare_invoice()
-        vals.update({
-            'carriage_condition_id': self.carriage_condition_id.id,
-            'goods_description_id': self.goods_description_id.id,
-            'transportation_reason_id': self.transportation_reason_id.id,
-            'transportation_method_id': self.transportation_method_id.id,
-            })
-        return vals
-
     def _preparare_ddt_data(self):
         picking_ids = [p.id for p in self.picking_ids]
         return {
