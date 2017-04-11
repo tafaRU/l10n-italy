@@ -30,6 +30,8 @@ class AccountInvoice(models.Model):
         'stock.picking.transportation_method',
         string='Method of Transportation')
     parcels = fields.Integer()
+    ddt_ids = fields.One2many(
+        'stock.picking.package.preparation', 'invoice_id', string='DDT')
 
     @api.onchange('partner_id', 'company_id')
     def _onchange_partner_id(self):

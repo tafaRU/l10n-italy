@@ -199,8 +199,6 @@ class StockPickingPackagePreparation(models.Model):
         It returns the first sale order of the ddt.
         """
         sale_order = False
-        import pdb
-        pdb.set_trace()
         for picking in self.picking_ids:
             for sm in picking.move_lines:
                 if sm.procurement_id and sm.procurement_id.sale_line_id:
@@ -223,8 +221,8 @@ class StockPickingPackagePreparation(models.Model):
             raise UserError(
                 _('Please define an accounting sale journal for this company.'))
         invoice_vals = {
-            #'name': self.client_order_ref or '',
-            #'origin': self.name,
+            # 'name': self.client_order_ref or '',
+            # 'origin': self.name,
             'name': self.ddt_number or '',
             'origin': self.ddt_number,
             'type': 'out_invoice',
@@ -256,8 +254,6 @@ class StockPickingPackagePreparation(models.Model):
             'Product Unit of Measure')
         invoices = {}
         references = {}
-        import pdb
-        pdb.set_trace()
         for ddt in self:
             if not ddt.to_be_invoiced or ddt.invoice_id:
                 continue
@@ -295,12 +291,6 @@ class StockPickingPackagePreparation(models.Model):
                 if line.product_uom_qty > 0:
                     line.invoice_line_create(
                         invoices[group_key].id, line.product_uom_qty)
-                """
-                elif line.qty_to_invoice < 0 and final:
-                    line.invoice_line_create(
-                        invoices[group_key].id, line.qty_to_invoice)"""
-            import pdb
-            pdb.set_trace()
             if references.get(invoices.get(group_key)):
                 if ddt not in references[invoices[group_key]]:
                     references[invoice] = references[invoice] | ddt

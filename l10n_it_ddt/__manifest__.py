@@ -36,6 +36,7 @@
         'wizard/add_picking_to_ddt.xml',
         'wizard/ddt_from_picking.xml',
         'wizard/ddt_create_invoice.xml',
+        'wizard/ddt_invoicing.xml',
         'views/report_ddt.xml',
     ],
     'installable': True,

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-11 16:27+0000\n"
-"PO-Revision-Date: 2017-04-11 16:27+0000\n"
+"POT-Creation-Date: 2017-04-11 19:22+0000\n"
+"PO-Revision-Date: 2017-04-11 19:22+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -55,11 +55,12 @@ msgstr "Crea automaticamente il DdT"
 #: selection:sale.order,ddt_invoicing_group:0
 #. module: l10n_it_ddt
 msgid "Billing Partner"
-msgstr "Billing Partner"
+msgstr "Partner di fatturazione"
 
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_create_invoice
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
 #. module: l10n_it_ddt
 msgid "Cancel"
 msgstr "Annulla"
@@ -105,6 +106,7 @@ msgid "Company"
 msgstr "Azienda"
 
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
 #. module: l10n_it_ddt
 msgid "Create"
 msgstr "Crea"
@@ -117,6 +119,7 @@ msgstr "Crea fattura"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_create_uid
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_create_invoice_create_uid
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings_create_uid
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing_create_uid
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_create_uid
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_carriage_condition_create_uid
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_goods_description_create_uid
@@ -129,6 +132,7 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_create_date
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_create_invoice_create_date
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings_create_date
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing_create_date
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_create_date
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_carriage_condition_create_date
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_goods_description_create_date
@@ -143,6 +147,7 @@ msgstr "Creato il"
 #: model:ir.ui.view,arch_db:l10n_it_ddt.stock_picking_tree_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_create_invoice
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
 #. module: l10n_it_ddt
 msgid "DDT"
 msgstr "DDT"
@@ -152,6 +157,15 @@ msgstr "DDT"
 #. module: l10n_it_ddt
 msgid "DDT Create Invoice"
 msgstr "DDT Crea fattura"
+
+#: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:40
+#: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_invoicing
+#: model:ir.ui.menu,name:l10n_it_ddt.menu_ddt_invoicing
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
+#. module: l10n_it_ddt
+#, python-format
+msgid "DDT Invoicing"
+msgstr "Fatturazione DDT"
 
 #: model:ir.actions.act_window,name:l10n_it_ddt.action_ddt_from_pickings
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
@@ -251,6 +265,7 @@ msgstr "Sconto (%)"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_display_name
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_create_invoice_display_name
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings_display_name
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing_display_name
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_display_name
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_carriage_condition_display_name
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_goods_description_display_name
@@ -264,6 +279,11 @@ msgstr "Nome Visualizzato"
 #. module: l10n_it_ddt
 msgid "Driver's Signature"
 msgstr "Firma Conducente"
+
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing_date_to
+#. module: l10n_it_ddt
+msgid "End Date"
+msgstr "Data di fine"
 
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 #. module: l10n_it_ddt
@@ -283,6 +303,7 @@ msgstr "Raggruppa per"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_id
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_create_invoice_id
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings_id
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing_id
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_id
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_carriage_condition_id
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_goods_description_id
@@ -309,9 +330,16 @@ msgstr "Fattura"
 msgid "Invoice Line"
 msgstr "Riga Fattura"
 
+#: code:addons/l10n_it_ddt/wizard/ddt_create_invoice.py:41
+#. module: l10n_it_ddt
+#, python-format
+msgid "Invoices from DDT"
+msgstr "Fatture da DDT"
+
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt___last_update
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_create_invoice___last_update
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings___last_update
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing___last_update
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type___last_update
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_carriage_condition___last_update
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_goods_description___last_update
@@ -324,6 +352,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_write_uid
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_create_invoice_write_uid
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings_write_uid
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing_write_uid
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_write_uid
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_carriage_condition_write_uid
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_goods_description_write_uid
@@ -336,6 +365,7 @@ msgstr "Ultima modifica di"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_add_pickings_to_ddt_write_date
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_create_invoice_write_date
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_from_pickings_write_date
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing_write_date
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_ddt_type_write_date
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_carriage_condition_write_date
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_goods_description_write_date
@@ -387,6 +417,12 @@ msgstr "Nota"
 #. module: l10n_it_ddt
 msgid "Notes"
 msgstr "Note"
+
+#: code:addons/l10n_it_ddt/wizard/ddt_invoicing.py:33
+#. module: l10n_it_ddt
+#, python-format
+msgid "Nothing to invoice"
+msgstr "Non ci sono DDT da fatturare"
 
 #: selection:res.partner,ddt_invoicing_group:0
 #: selection:sale.order,ddt_invoicing_group:0
@@ -444,13 +480,13 @@ msgstr "ID Picking"
 msgid "Pickings"
 msgstr "Picking"
 
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:224
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:222
 #. module: l10n_it_ddt
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr "Definisci un sezionale di vendita per questa azienda."
 
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:359
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:353
 #. module: l10n_it_ddt
 #, python-format
 msgid "Please define income account for this product: \"%s\" (id:%d) - or for its category: \"%s\"."
@@ -608,18 +644,23 @@ msgstr "Partner di consegna"
 msgid "Size"
 msgstr "Dimensioni"
 
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_ddt_invoicing_date_from
+#. module: l10n_it_ddt
+msgid "Start Date"
+msgstr "Data di inizio"
+
 #: model:ir.model,name:l10n_it_ddt.model_stock_ddt_type
 #. module: l10n_it_ddt
 msgid "Stock DdT Type"
-msgstr "Tipo DDT"
+msgstr "Stock DdT Type"
 
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_line_tax_id
 #. module: l10n_it_ddt
 msgid "Taxes"
 msgstr "Imposte"
 
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:309
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:313
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:303
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:307
 #. module: l10n_it_ddt
 #, python-format
 msgid "There is no invoicable line."
@@ -684,9 +725,15 @@ msgstr "ddt.create.invoice"
 msgid "ddt.from.pickings"
 msgstr "ddt.from.pickings"
 
+#: model:ir.model,name:l10n_it_ddt.model_ddt_invoicing
+#. module: l10n_it_ddt
+msgid "ddt.invoicing"
+msgstr "ddt.invoicing"
+
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_create_invoice
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_from_pickings
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_invoicing
 #. module: l10n_it_ddt
 msgid "or"
 msgstr "o"
