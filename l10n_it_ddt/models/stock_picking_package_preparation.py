@@ -335,6 +335,26 @@ class StockPickingPackagePreparationLine(models.Model):
         string='Discount (%)', digits=dp.get_precision('Discount'),
         default=0.0)
 
+    @api.model
+    def _prepare_lines_from_pickings(self, picking_ids):
+        """
+        Add values used for invoice creation
+        """
+        lines = super(StockPickingPackagePreparationLine, self).\
+            _prepare_lines_from_pickings(picking_ids)
+        import pdb
+        pdb.set_trace()
+        for line in lines:
+            sale_line = False
+            if line['move_id']:
+                move = self.env['stock.move'].browse(line['move_id'])
+                sale_line = move.procurement_id.sale_line_id or False
+            if sale_line:
+                line['price_unit'] = sale_line.price_unit or 0
+                line['discount'] = sale_line.discount or 0
+                line['tax_id'] = [(6, 0, [x.id]) for x in sale_line.tax_id]
+        return lines
+
     @api.multi
     def _prepare_invoice_line(self, qty):
         """
