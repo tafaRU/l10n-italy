@@ -16,15 +16,32 @@ from odoo.exceptions import Warning as UserError
 class DdtInvoicing(models.TransientModel):
     _name = "ddt.invoicing"
 
-    def _get_ddt_ids(self):
-        return self.env['stock.picking.package.preparation'].browse(
-            self.env.context['active_ids'])
-
-    ddt_ids = fields.Many2many(
-        'stock.picking.package.preparation', default=_get_ddt_ids)
+    date_from = fields.Date(string='Start Date', required=True)
+    date_to = fields.Date(string='End Date', required=True)
 
     @api.multi
-    def create_invoice(self):
+    def create_invoices(self):
+        for wizard in self:
+            domain = [('to_be_invoiced', '=', True),
+                      ('invoice_id', '=', False),
+                      ('date', '>=', wizard.date_from),
+                      ('date', '<=', wizard.date_to)]
+            ddts = self.env['stock.picking.package.preparation'].search(domain)
 
-        if self.ddt_ids:
-            self.ddt_ids.action_invoice_create()
+            if not ddts:
+                raise UserError(
+                    _('Nothing to invoice'))
+
+            view = self.env['ir.model.data'].get_object_reference(
+                'l10n_it_ddt', 'view_ddt_create_invoice')
+
+            self = self.with_context(active_ids=ddts.ids)
+            return {
+                    'name': _('DDT Invoicing'),
+                    'context': self._context,
+                    'type': 'ir.actions.act_window',
+                    'view_mode': 'form',
+                    'view_id': view[1],
+                    'res_model': 'ddt.create.invoice',
+                    'target': 'new',
+                }

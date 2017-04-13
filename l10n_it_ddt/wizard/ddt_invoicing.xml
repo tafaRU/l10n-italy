@@ -7,9 +7,12 @@
             <field name="arch" type="xml">
               <form string="DDT Invoicing">
                 <separator string="DDT" />
-                    <field string="DDT" name="ddt_ids" readonly="1"/>
+                    <group>
+	                    <field name="date_from" />
+	                    <field name="date_to" />
+                    </group>
                     <footer>
-                        <button name="create_invoice" string="Create" type="object" class="oe_highlight"/>
+                        <button name="create_invoices" string="Create" type="object" class="oe_highlight"/>
                         or
                         <button string="Cancel" class="oe_link" special="cancel" />
                     </footer>
@@ -27,13 +30,8 @@
             <field name="target">new</field>
         </record>
 
-        <record model="ir.values" id="ddt_invoicing">
-            <field name="model_id" ref="stock_picking_package_preparation.model_stock_picking_package_preparation" />
-            <field name="name">Create Invoice</field>
-            <field name="key2">client_action_multi</field>
-            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_ddt_invoicing'))" />
-            <field name="key">action</field>
-            <field name="model">stock.picking.package.preparation</field>
-        </record>
+        <menuitem action="action_ddt_invoicing"
+            id="menu_ddt_invoicing" parent="sale.menu_sale_invoicing"
+            sequence="20"/>
 
 </odoo>
