@@ -267,6 +267,8 @@ class StockPickingPackagePreparation(models.Model):
                 group_key = (order.partner_invoice_id.id, order.currency_id.id)
             elif group_method == 'shipping_partner':
                 group_key = (ddt.partner_id.id, ddt.company_id.currency_id.id)
+            elif group_method == 'code_group':
+                group_key = (ddt.partner_id.ddt_code_group)
             else:
                 group_key = ddt.id
 

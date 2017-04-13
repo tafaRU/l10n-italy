@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-13 14:04+0000\n"
-"PO-Revision-Date: 2017-04-13 14:04+0000\n"
+"POT-Creation-Date: 2017-04-13 14:40+0000\n"
+"PO-Revision-Date: 2017-04-13 14:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -110,6 +110,12 @@ msgstr "Firma del Corriere"
 msgid "Cessionario"
 msgstr "Cessionario"
 
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_res_partner_ddt_code_group
+#: selection:res.partner,ddt_invoicing_group:0
+#. module: l10n_it_ddt
+msgid "Code group"
+msgstr "Codice Raggruppamento"
+
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_line_sale_line_id
 #. module: l10n_it_ddt
 msgid "Company"
@@ -184,6 +190,11 @@ msgstr "Fatturazione DDT"
 #. module: l10n_it_ddt
 msgid "DDT from Pickings"
 msgstr "DDT da Picking"
+
+#: model:ir.ui.view,arch_db:l10n_it_ddt.view_partner_form_ddt
+#. module: l10n_it_ddt
+msgid "DDT info"
+msgstr "DDT info"
 
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_partner_ddt_invoicing_group
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_sale_order_ddt_invoicing_group
@@ -686,8 +697,8 @@ msgstr "Stock DdT Type"
 msgid "Taxes"
 msgstr "Imposte"
 
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:301
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:305
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:303
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:307
 #. module: l10n_it_ddt
 #, python-format
 msgid "There is no invoicable line."

@@ -48,7 +48,8 @@ class SaleOrder(models.Model):
     ddt_invoicing_group = fields.Selection(
         [('nothing', 'One DDT - One Invoice'),
          ('billing_partner', 'Billing Partner'),
-         ('shipping_partner', 'Shipping Partners')], 'DDT invoicing group',
+         ('shipping_partner', 'Shipping Partners'),
+         ('code_group', 'Code group')], 'DDT invoicing group',
         default='billing_partner')
 
     @api.multi
