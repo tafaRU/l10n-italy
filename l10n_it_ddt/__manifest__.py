@@ -18,6 +18,7 @@
     'summary': 'Documento di Trasporto',
     'author': 'Davide Corio, Odoo Community Association (OCA),'
               'Agile Business Group, Francesco Apruzzese, Apulia Software',
+              'Openforce di Camilli Alessandro'
     'website': 'http://www.odoo-italia.org/',
     'license': 'AGPL-3',
     'depends': [
