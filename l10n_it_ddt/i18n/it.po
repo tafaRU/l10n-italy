@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-13 10:59+0000\n"
-"PO-Revision-Date: 2017-04-13 10:59+0000\n"
+"POT-Creation-Date: 2017-04-13 14:04+0000\n"
+"PO-Revision-Date: 2017-04-13 14:04+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -153,7 +153,9 @@ msgid "Created on"
 msgstr "Creato il"
 
 #: model:ir.actions.report.xml,name:l10n_it_ddt.action_report_ddt
+#: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice_ddt_ids
 #: model:ir.ui.menu,name:l10n_it_ddt.menu_ddt_preparation
+#: model:ir.ui.view,arch_db:l10n_it_ddt.invoice_form_view_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.stock_picking_tree_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_add_pickings_to_ddt
 #: model:ir.ui.view,arch_db:l10n_it_ddt.view_ddt_create_invoice
@@ -197,7 +199,7 @@ msgstr "Numero DDT:"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_res_partner_ddt_show_price
 #. module: l10n_it_ddt
 msgid "DDT show prices"
-msgstr "DDT show prices"
+msgstr "DDT mostra prezzi"
 
 #: model:ir.ui.view,arch_db:l10n_it_ddt.delivery_data
 #. module: l10n_it_ddt
@@ -328,7 +330,7 @@ msgstr "Raggruppa per"
 msgid "ID"
 msgstr "ID"
 
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:139
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:141
 #. module: l10n_it_ddt
 #, python-format
 msgid "Impossible to put in pack a package without details"
@@ -413,7 +415,7 @@ msgstr "Trasporto a mezzo"
 msgid "Name"
 msgstr "Nome"
 
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:152
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:154
 #. module: l10n_it_ddt
 #, python-format
 msgid "Not every picking is in done status"
@@ -495,13 +497,13 @@ msgstr "ID Picking"
 msgid "Pickings"
 msgstr "Picking"
 
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:222
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:224
 #. module: l10n_it_ddt
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr "Definisci un sezionale di vendita per questa azienda."
 
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:353
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:371
 #. module: l10n_it_ddt
 #, python-format
 msgid "Please define income account for this product: \"%s\" (id:%d) - or for its category: \"%s\"."
@@ -579,7 +581,7 @@ msgstr "I Picking selezionati %s hanno differenti Descrizioni dell'aspetto ester
 msgid "Selected Picking %s have different transportation reason"
 msgstr "I Picking selezionati %s hanno Causali di trasporto differenti"
 
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:129
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:131
 #. module: l10n_it_ddt
 #, python-format
 msgid "Selected Picking is already linked to DDT: %s"
@@ -647,12 +649,12 @@ msgstr "Informazioni spedizione"
 #: selection:res.partner,ddt_invoicing_group:0
 #. module: l10n_it_ddt
 msgid "Shipping Partner"
-msgstr "Shipping Partner"
+msgstr "Partner di consegna"
 
 #: selection:sale.order,ddt_invoicing_group:0
 #. module: l10n_it_ddt
 msgid "Shipping Partners"
-msgstr "Shipping Partners"
+msgstr "Partner di consegna"
 
 #: model:ir.model.fields,help:l10n_it_ddt.field_res_partner_ddt_show_price
 #. module: l10n_it_ddt
@@ -684,8 +686,8 @@ msgstr "Stock DdT Type"
 msgid "Taxes"
 msgstr "Imposte"
 
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:303
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:307
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:301
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:305
 #. module: l10n_it_ddt
 #, python-format
 msgid "There is no invoicable line."

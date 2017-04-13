@@ -344,8 +344,6 @@ class StockPickingPackagePreparationLine(models.Model):
         """
         lines = super(StockPickingPackagePreparationLine, self).\
             _prepare_lines_from_pickings(picking_ids)
-        import pdb
-        pdb.set_trace()
         for line in lines:
             sale_line = False
             if line['move_id']:
