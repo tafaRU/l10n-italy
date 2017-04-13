@@ -102,6 +102,7 @@ class StockPickingPackagePreparation(models.Model):
         'account.invoice', string='Invoice', readonly=True)
     to_be_invoiced = fields.Boolean(
         string='To be Invoiced', store=True, compute="_compute_to_be_invoiced")
+    show_price = fields.Boolean(string='Show prices on report')
 
     @api.onchange('partner_id', 'ddt_type_id')
     def on_change_partner(self):
@@ -120,6 +121,7 @@ class StockPickingPackagePreparation(models.Model):
             self.transportation_method_id = \
                 self.partner_id.transportation_method_id.id \
                 if self.partner_id.transportation_method_id else False
+            self.show_price = self.partner_id.ddt_show_price
 
     @api.model
     def check_linked_picking(self, picking):

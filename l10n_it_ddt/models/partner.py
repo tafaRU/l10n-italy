@@ -32,3 +32,6 @@ class ResPartner(models.Model):
          ('billing_partner', 'Billing Partner'),
          ('shipping_partner', 'Shipping Partner')], 'DDT invoicing group',
         default='billing_partner')
+    ddt_show_price = fields.Boolean(
+        string='DDT show prices', default=False, help="Show prices and \
+        discounts in ddt report")

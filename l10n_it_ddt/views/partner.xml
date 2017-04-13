@@ -17,6 +17,7 @@
                         <field name="transportation_method_id"
                             widget="selection"/>
                         <field name="ddt_invoicing_group"/>
+                        <field name="ddt_show_price"/>
                     </group>
                 </xpath>
             </field>
