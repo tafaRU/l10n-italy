@@ -322,6 +322,15 @@ class StockPickingPackagePreparation(models.Model):
                                            subtype_id=self.env.ref('mail.mt_note').id)
         return [inv.id for inv in invoices.values()]
 
+    @api.multi
+    def unlink(self):
+        for ddt in self:
+            if ddt.invoice_id:
+                raise UserError(
+                    _("Document {d} has invoice linked".format(
+                        d=ddt.ddt_number)))
+        return super(StockPickingPackagePreparation, self).unlink()
+
 
 class StockPickingPackagePreparationLine(models.Model):
 
