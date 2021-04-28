@@ -9,7 +9,7 @@
     "category": "Localization/Italy",
     "summary": "Aggiunge la tabella dei codici carica da usare nelle dichiarazioni"
     " fiscali italiane",
-    "author": "Openforce di Camilli Alessandro," "Odoo Community Association (OCA)",
+    "author": "Openforce di Camilli Alessandro, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-italy",
     "license": "LGPL-3",
     "depends": ["account"],
@@ -19,5 +19,4 @@
         "views/appointment_code_view.xml",
     ],
     "installable": True,
-    "pre_init_hook": "rename_old_italian_module",
 }
