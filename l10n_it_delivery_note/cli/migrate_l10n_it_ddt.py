@@ -276,13 +276,18 @@ class MigrateL10nItDdt(EasyCommand):
         _logger.info("Document types data successfully migrated.")
 
     def migrate_documents(self):
+        def partner_shipping_getter(record):
+            dest_warehouse_id = record.picking_ids[0].location_dest_id.get_warehouse()
+            return dest_warehouse_id.partner_id if dest_warehouse_id else record.partner_id
+
         def vals_getter(record):
             return {
-                "state": STATES_MAPPING[record.state],
+                "state": STATES_MAPPING[record.state] if record.state else 'draft',
                 "name": record.ddt_number,
                 "partner_sender_id": record.company_id.id,
                 "partner_id": record.partner_id.id,
-                "partner_shipping_id": record.partner_shipping_id.id,
+                # partner_shipping_id is not required in the old model while it is in the new one
+                "partner_shipping_id": record.partner_shipping_id.id or partner_shipping_getter(record).id,
                 "type_id": self._document_types[record.ddt_type_id].id,
                 "date": record.date,
                 "carrier_id": record.carrier_id.id,
@@ -290,25 +295,25 @@ class MigrateL10nItDdt(EasyCommand):
                 "transport_datetime": record.date_done,
                 "packages": record.parcels,
                 "volume": record.volume,
-                "volume_uom_id": record.volume_uom_id.id or self._default_volume_uom.id,
+                # "volume_uom_id": record.volume_uom_id.id or self._default_volume_uom.id,
                 "gross_weight": record.gross_weight or record.weight,
-                "gross_weight_uom_id": record.gross_weight_uom_id.id
-                or self._default_weight_uom.id,
-                "net_weight": record.weight_manual or record.weight,
-                "net_weight_uom_id": record.weight_manual_uom_id.id
-                or self._default_weight_uom.id,
+                #"gross_weight_uom_id": record.gross_weight_uom_id.id
+                # or self._default_weight_uom.id,
+                # "net_weight": record.weight_manual or record.weight,
+                #"net_weight_uom_id": record.weight_manual_uom_id.id
+                # or self._default_weight_uom.id,
                 "goods_appearance_id": self._goods_descriptions[
                     record.goods_description_id
-                ].id,
+                ].id if record.goods_description_id else False,
                 "transport_reason_id": self._transportation_reasons[
                     record.transportation_reason_id
-                ].id,
+                ].id if record.transportation_reason_id else False,
                 "transport_condition_id": self._carriage_conditions[
                     record.carriage_condition_id
-                ].id,
+                ].id if record.carriage_condition_id else False,
                 "transport_method_id": self._transportation_methods[
                     record.transportation_method_id
-                ].id,
+                ].id if record.transportation_method_id else False,
                 "picking_ids": [(4, p.id) for p in record.picking_ids],
                 "invoice_ids": [(4, record.invoice_id.id)] if record.invoice_id else [],
                 "note": record.note,
