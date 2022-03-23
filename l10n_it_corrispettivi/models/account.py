@@ -5,8 +5,8 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
-class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
     @api.model
     def _default_partner_id(self):
@@ -19,7 +19,7 @@ class AccountInvoice(models.Model):
     def _default_journal(self):
         if not self._context.get("default_corrispettivi", False):
             # If this is not a receipts (corrispettivi), do nothing
-            return super(AccountInvoice, self)._default_journal()
+            return super(AccountMove, self)._default_journal()
         company_id = self._context.get("company_id", self.env.user.company_id)
         return self.env["account.journal"].get_corr_journal(company_id)
 
@@ -45,14 +45,12 @@ class AccountInvoice(models.Model):
         else:
             self.journal_id = self._default_journal()
 
-    @api.multi
     def set_corr_journal(self):
         for invoice in self:
             invoice.journal_id = self.env["account.journal"].get_corr_journal(
                 invoice.company_id
             )
 
-    @api.multi
     def corrispettivo_print(self):
         """ Print the receipt and mark it as sent"""
         self.ensure_one()

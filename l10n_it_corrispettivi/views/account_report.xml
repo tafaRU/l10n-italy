@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright 2018 Simone Rubino - Agile Business Group -->
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     Copyright 2021 Kevin Poli - AIR s.r.l.
+    -->
 <odoo>
     <report
         id="account_corrispettivi"
-        model="account.invoice"
+        model="account.move"
         string="Receipt"
         report_type="qweb-pdf"
         name="l10n_it_corrispettivi.report_corrispettivi"
         file="l10n_it_corrispettivi.report_corrispettivi"
         attachment_use="True"
-        attachment="(object.state in ('open','paid')) and ('RICEV'+(object.number or '').replace('/','')+'.pdf')"
+        attachment="(object.state in ('draft','posted')) and ('RICEV'+(object.name or '').replace('/','')+'.pdf')"
     />
 
     <template id="report_corrispettivi">
@@ -41,12 +43,10 @@
                 <attribute name="style">display: none;</attribute>
             </xpath>
             <span
-            t-if="o.type == 'out_invoice' and o.state in ('open', 'in_payment', 'paid')"
+            t-if="o.move_type == 'out_invoice' and o.state == 'posted'"
             position="replace"
         >
-                <span
-                t-if="o.type == 'out_invoice' and o.state in ('open', 'in_payment', 'paid')"
-            >
+                <span t-if="o.move_type == 'out_invoice' and o.state == 'posted'">
                     Receipt
                 </span>
             </span>
@@ -73,7 +73,7 @@
                 name="invoice_date"
             >
                     <strong>Receipt Date:</strong>
-                    <p class="m-0" t-field="o.date_invoice" />
+                    <p class="m-0" t-field="o.invoice_date" />
                 </div>
             </div>
             <p t-if="o.reference" position="attributes">
