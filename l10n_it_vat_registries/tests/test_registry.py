@@ -1,7 +1,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import logging
+
 from odoo import fields
 from odoo.tests.common import TransactionCase
+
+logger = logging.getLogger(__name__)
 
 
 class TestRegistry(TransactionCase):
@@ -99,7 +103,9 @@ class TestRegistry(TransactionCase):
         report_id = self.ref("l10n_it_vat_registries.action_report_registro_iva")
 
         bindings = self.env["ir.actions.actions"].get_bindings("account.move")
+
         report_actions = bindings.get("report")
         report_ids = map(lambda report_action: report_action.get("id"), report_actions)
+        logger.info(report_ids)
 
         self.assertNotIn(report_id, report_ids)
