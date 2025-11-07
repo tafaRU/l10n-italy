@@ -517,15 +517,17 @@ class AccountMoveInherit(models.Model):
             messages_to_log += super()._l10n_it_edi_import_line(
                 element, move_line, extra_info=extra_info
             )
-            # If no product is found, try to find a product that may be fitting
+            # If no product is found use the default one set on the partner
             if (
                 not move_line.product_id
-                and move_line.partner_id.e_invoice_default_product_id
+                and move_line.partner_id.l10n_edi_it_default_product_id
             ):
-                fitting_product = move_line.partner_id.e_invoice_default_product_id
-                if fitting_product:
+                l10n_edi_it_default_product_id = (
+                    move_line.partner_id.l10n_edi_it_default_product_id
+                )
+                if l10n_edi_it_default_product_id:
                     name = move_line.name
-                    move_line.product_id = fitting_product
+                    move_line.product_id = l10n_edi_it_default_product_id
                     move_line.name = name
         else:
             raise UserError(
