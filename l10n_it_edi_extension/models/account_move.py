@@ -517,6 +517,16 @@ class AccountMoveInherit(models.Model):
             messages_to_log += super()._l10n_it_edi_import_line(
                 element, move_line, extra_info=extra_info
             )
+            # If no product is found, try to find a product that may be fitting
+            if (
+                not move_line.product_id
+                and move_line.partner_id.e_invoice_default_product_id
+            ):
+                fitting_product = move_line.partner_id.e_invoice_default_product_id
+                if fitting_product:
+                    name = move_line.name
+                    move_line.product_id = fitting_product
+                    move_line.name = name
         else:
             raise UserError(
                 self.env._(
