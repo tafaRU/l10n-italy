@@ -517,18 +517,19 @@ class AccountMoveInherit(models.Model):
             messages_to_log += super()._l10n_it_edi_import_line(
                 element, move_line, extra_info=extra_info
             )
-            # If no product is found use the default one set on the partner
-            if (
-                not move_line.product_id
-                and move_line.partner_id.l10n_edi_it_default_product_id
-            ):
-                l10n_edi_it_default_product_id = (
-                    move_line.partner_id.l10n_edi_it_default_product_id
-                )
-                if l10n_edi_it_default_product_id:
+            l10n_edi_it_default_product_id = (
+                move_line.partner_id.l10n_edi_it_default_product_id
+            )
+            if l10n_edi_it_default_product_id:
+                # If no product is found use the default one set on the partner
+                if not move_line.product_id:
                     name = move_line.name
                     move_line.product_id = l10n_edi_it_default_product_id
                     move_line.name = name
+                    messages_to_log += move_line.adjust_accounting_data(
+                        l10n_edi_it_default_product_id
+                    )
+
         else:
             raise UserError(
                 self.env._(
