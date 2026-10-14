@@ -11,7 +11,7 @@ import os
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import Command
+from odoo import Command, fields
 from odoo.exceptions import UserError
 from odoo.fields import first
 from odoo.tests import Form
@@ -1156,4 +1156,51 @@ class TestInvoiceDueCost(riba_common.TestRibaCommon):
         self.assertTrue(acceptance_lines)
         self.assertEqual(
             acceptance_lines.mapped("date"), [acceptance_date] * len(acceptance_lines)
+        )
+
+    def _post_invoices_with_different_due_months(self):
+        """Post two invoices for the same partner with due dates in different months.
+
+        Regression test for https://github.com/OCA/l10n-italy/issues/4637:
+        the month check must ignore the due dates of the invoice being posted,
+        otherwise the collection fees are never added after the first invoice.
+        """
+        today = fields.Date.today()
+        self.invoice.company_id.due_cost_service_id = self.service_due_cost.id
+        self.invoice.invoice_date = today
+        self.invoice.action_post()
+        first_due_months = {
+            (d.year, d.month)
+            for d in self.invoice.line_ids.filtered(
+                lambda line: line.display_type == "payment_term"
+            ).mapped("date_maturity")
+        }
+        self.assertEqual(len(self.invoice.invoice_line_ids), 3)
+        self.invoice2.invoice_payment_term_id = self.payment_term2
+        self.invoice2.invoice_date = today + relativedelta(months=4)
+        second_due_months = {
+            (d.year, d.month)
+            for d in self.invoice2.line_ids.filtered(
+                lambda line: line.display_type == "payment_term"
+            ).mapped("date_maturity")
+        }
+        # pre-condition: no overlap between due months of the two invoices
+        self.assertFalse(first_due_months & second_due_months)
+        self.invoice2.action_post()
+        return self.invoice2
+
+    def test_add_due_cost_different_month(self):
+        inv2 = self._post_invoices_with_different_due_months()
+        self.assertEqual(
+            inv2.partner_id.commercial_partner_id.riba_policy_expenses, "one_a_month"
+        )
+        self.assertEqual(
+            len(inv2.invoice_line_ids), 2, "collection fees missing on second invoice"
+        )
+
+    def test_add_due_cost_different_month_unlimited(self):
+        self.partner.riba_policy_expenses = "unlimited"
+        inv2 = self._post_invoices_with_different_due_months()
+        self.assertEqual(
+            len(inv2.invoice_line_ids), 2, "collection fees missing on second invoice"
         )
